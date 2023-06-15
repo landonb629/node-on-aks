@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: service1-svc
+spec:
+  selector:
+    service: service1
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 3080

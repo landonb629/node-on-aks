@@ -3,7 +3,7 @@ const app = express()
 
 app.use(express.json())
 
-app.get("/api/data", (req, res) => { 
+app.get("service2/api/data", (req, res) => { 
     res.status(200).json({msg: 'hello from service2'})
 })
 

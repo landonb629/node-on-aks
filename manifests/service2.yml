@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: service2
+  labels: 
+    tier: backend 
+    service: service2
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      service: service2
+  template:
+    metadata:
+      name: service2 
+      labels:
+        tier: backend
+        service: service2
+    spec:
+      containers:
+        - name: service2 
+          image: service2
+          imagePullPolicy: Never
