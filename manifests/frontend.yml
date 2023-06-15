@@ -19,5 +19,5 @@ spec:
     spec:
       containers:
         - name: node-frontend
-          image: frontend:v1.2
+          image: frontend:v1.3
           imagePullPolicy: Never
