@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
         - name: service1 
-          image: service1:v1.0
+          image: service1:v1.2
           imagePullPolicy: Never
       
