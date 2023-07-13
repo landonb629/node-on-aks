@@ -45,4 +45,31 @@ jobs:
       - name: terraform plan
         run: | 
           terraform plan
+    
+  CD:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged && github.event.pull_request.base.ref == 'main' }}
+    defaults:
+      run: 
+        working-directory: ./infra
+      
+    steps:
+      - name: checkout repo 
+        uses: actions/checkout@v3
+      
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.2
+      
+      - name: Configure AWS Credentials 
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      
+      - name: Terraform apply 
+        run: | 
+          terraform apply -auto-approve
         
