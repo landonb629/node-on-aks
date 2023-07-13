@@ -47,7 +47,7 @@ jobs:
       
       - name: echo results 
         run: | 
-          echo "$GITHUB_CONTEXT"
+          echo ${{ toJson(github) }}
     
   CD:
     runs-on: ubuntu-latest
