@@ -9,14 +9,12 @@ terraform {
     bucket  = "empowercloudtech"
     key     = "nodeonaks"
     region  = "us-east-2"
-    profile = "empowercloud"
   }
   required_version = "1.5.2"
 }
 
 provider "aws" {
   region  = "us-east-2"
-  profile = "empowercloud"
 }
 
 provider "kubernetes" { 
