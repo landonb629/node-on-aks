@@ -7,7 +7,7 @@ on:
       - "**"
   pull_request:
     branches: 
-      - "**"
+      - "main"
 
 jobs: 
   CI:
@@ -47,6 +47,10 @@ jobs:
       - name: terraform plan
         run: | 
           terraform plan
+      
+      - name: echo github 
+        run: | 
+          echo '${{ toJson(github) }}'
       
       - name: echo results 
         run: | 
