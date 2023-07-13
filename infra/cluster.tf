@@ -51,11 +51,8 @@ module "eks-cluster"  {
             instance_types = ["t3.medium"]
         }
     }
-    create_aws_auth_configmap = true
-    manage_aws_auth_configmap= true 
-    aws_auth_roles = [ 
-
-    ]
+    //create_aws_auth_configmap = true
+    manage_aws_auth_configmap = true
     aws_auth_users = [ 
         { 
             userarn = "arn:aws:iam::500731508494:user/landon.babay"
@@ -64,4 +61,3 @@ module "eks-cluster"  {
         }
     ]
 }
-
