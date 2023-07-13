@@ -41,7 +41,15 @@ module "eks-cluster"  {
     eks_managed_node_group_defaults = { 
         instance_types = ["t3.medium"]
     }
-    eks_managed_node_groups = { 
+    eks_managed_node_groups = {
+        /* 
+        prod-nodegroup = { 
+            min_size = 2
+            max_size = 2
+            desired_size = 2 
+            instance_types = ["t3.medium"]
+        }
+        */
         blue = {}
         green = { 
             min_size = 2
