@@ -44,6 +44,11 @@ jobs:
       - name: terraform plan
         run: | 
           terraform plan
+      
+      - name: echo results 
+        run: | 
+          echo ${{ github.event.pull_request.merged }}
+          echo ${{ github.event.pull_request.base.ref }}
     
   CD:
     runs-on: ubuntu-latest
