@@ -37,7 +37,7 @@ module "eks-cluster"  {
     vpc_id = aws_vpc.production.id 
     subnet_ids = [aws_subnet.private_subnets["private-1a"].id, aws_subnet.private_subnets["private-2a"].id]
     control_plane_subnet_ids = [aws_subnet.private_subnets["private-1a"].id, aws_subnet.private_subnets["private-2a"].id]
-
+    kms_key_administrators = ["arn:aws:iam::500731508494:user/landon.babay", "arn:aws:iam::500731508494:user/empower-CICD"]
     eks_managed_node_group_defaults = { 
         instance_types = ["t3.medium"]
     }
@@ -51,17 +51,18 @@ module "eks-cluster"  {
             instance_types = ["t3.medium"]
         }
     }
-    create_aws_auth_configmap = true
-    manage_aws_auth_configmap= true 
-    aws_auth_roles = [ 
-
-    ]
+    //create_aws_auth_configmap = true
+    manage_aws_auth_configmap = true
     aws_auth_users = [ 
         { 
             userarn = "arn:aws:iam::500731508494:user/landon.babay"
             username = "landon.babay"
             groups = ["system:masters"]
+        }, 
+        { 
+           userarn = "arn:aws:iam::500731508494:user/empower-CICD",
+           username = "empower-CICD",
+           groups = ["system:masters"]
         }
     ]
 }
-
