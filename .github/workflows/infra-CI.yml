@@ -47,12 +47,11 @@ jobs:
       
       - name: echo results 
         run: | 
-          echo ${{ github.event.pull_request.merged }}
-          echo ${{ github.event.pull_request.base.ref }}
+          echo "$GITHUB_CONTEXT"
     
   CD:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged && github.event.pull_request.base.ref == 'main' }}
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     defaults:
       run: 
         working-directory: ./infra
