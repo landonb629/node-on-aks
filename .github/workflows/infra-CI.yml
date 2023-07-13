@@ -50,7 +50,10 @@ jobs:
       
       - name: echo results 
         run: | 
-          echo ${{ toJson(github) }}
+          echo "${{ github.event_name }}"
+          echo "${{ github.event.pull_request }}"
+          echo "${{ github.event.pull_request.base.ref }}"
+          echo "${{ github.event.pull_request.merged}}"
     
   CD:
     runs-on: ubuntu-latest
