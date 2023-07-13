@@ -66,3 +66,4 @@ module "eks-cluster"  {
         }
     ]
 }
+
