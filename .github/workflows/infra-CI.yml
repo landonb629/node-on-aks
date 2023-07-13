@@ -5,6 +5,9 @@ on:
       - "infra/**"
     branches:
       - "**"
+  pull_request:
+    branches: 
+      - "**"
 
 jobs: 
   CI:
