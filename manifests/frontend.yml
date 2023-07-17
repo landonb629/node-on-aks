@@ -19,5 +19,4 @@ spec:
     spec:
       containers:
         - name: node-frontend
-          image: frontend:v1.3
-          imagePullPolicy: Never
+          image: 500731508494.dkr.ecr.us-east-2.amazonaws.com/frontend:v1.0

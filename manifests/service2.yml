@@ -19,5 +19,4 @@ spec:
     spec:
       containers:
         - name: service2 
-          image: service2:v1.2
-          imagePullPolicy: Never
+          image: 500731508494.dkr.ecr.us-east-2.amazonaws.com/service2:v1.1

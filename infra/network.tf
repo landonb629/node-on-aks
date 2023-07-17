@@ -20,6 +20,7 @@ locals {
       cidr = "10.10.4.0/24"
     }
   }
+  ecr_name = ["frontend", "service1", "service2"]
 }
 // virtual network with 2 public and 2 private subnets 
 
@@ -108,3 +109,15 @@ resource "aws_route_table_association" "private-rt-association" {
   subnet_id      = aws_subnet.private_subnets[each.key].id
   route_table_id = aws_route_table.private-rt.id
 }
+
+
+resource "aws_ecr_repository" "production-registry" { 
+  for_each = toset(local.ecr_name)
+  name = each.key
+  force_delete = true 
+
+  tags = { 
+    Name = each.key
+  }
+}
+

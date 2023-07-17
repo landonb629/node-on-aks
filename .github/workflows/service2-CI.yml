@@ -1,0 +1,36 @@
+name: Microservice 2 CI 
+on:
+  push:
+    paths: 
+      - "service2/**"
+    branches: 
+      - "main"
+
+jobs: 
+  CI: 
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./service2
+    steps:
+      - name: checkout repo 
+        uses: actions/checkout@v3
+      
+      - name: login to ecr 
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v1
+      
+      - name: build and push image 
+        env: 
+          REGISTRY: ${{ steps.ecr-login.outputs.registry }}
+          REPOSITORY: service1
+          IMAGE_TAG: ${{ github.sha }}
+        run: | 
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG . 
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+      
+      
+         
+         
+    

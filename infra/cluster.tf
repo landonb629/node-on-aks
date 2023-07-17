@@ -42,24 +42,14 @@ module "eks-cluster"  {
         instance_types = ["t3.medium"]
     }
     eks_managed_node_groups = {
-        /* 
         prod-nodegroup = { 
             min_size = 2
             max_size = 2
             desired_size = 2 
             instance_types = ["t3.medium"]
-        }
-        */
-        blue = {}
-        green = { 
-            min_size = 2
-            max_size = 2 
-            desired_size = 2
-
-            instance_types = ["t3.medium"]
-        }
+        }        
     }
-    //create_aws_auth_configmap = true
+    create_aws_auth_configmap = true
     manage_aws_auth_configmap = true
     aws_auth_users = [ 
         { 
@@ -75,3 +65,10 @@ module "eks-cluster"  {
     ]
 }
 
+resource "helm_release" "argo" { 
+    name = "argocd"
+    repository = "https://argoproj.github.io/argo-helm"
+    chart = "argo-cd"
+    namespace = "argo"
+    version = "2.7.7"
+}
