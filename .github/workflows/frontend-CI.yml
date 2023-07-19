@@ -32,7 +32,7 @@ jobs:
       - name: build and push image 
         env: 
           REGISTRY: ${{ steps.ecr-login.outputs.registry }}
-          REPOSITORY: service1
+          REPOSITORY: frontend
           IMAGE_TAG: ${{ github.sha }}
         run: | 
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG . 

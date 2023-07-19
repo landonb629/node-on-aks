@@ -11,12 +11,12 @@ on:
 jobs: 
   CD: 
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
     defaults:
       run:
         working-directory: ./frontend
     steps:
       - name: update manifest 
-        if: github.event.pull_request.merged == "true"
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
