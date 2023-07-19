@@ -3,7 +3,6 @@ on:
   pull_request:
     types: 
       - opened
-      - closed 
     paths: 
       - "frontend/**"
     branches:
@@ -19,6 +18,13 @@ jobs:
       - name: checkout repo 
         uses: actions/checkout@v3
       
+      - name: Configure AWS Credentials 
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      
       - name: login to ecr 
         id: ecr-login
         uses: aws-actions/amazon-ecr-login@v1
@@ -32,11 +38,7 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG . 
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           
-      - name: update manifest 
-        if: ${{ github.event_path}} == 'pull_request' && ${{github.event.action}} == 'closed'
-        run: |
-          cd ../manifests
-          sed -i 's/service1:v.*'/service`:$IMAGE_TAG/g` frontend.yml
+      
         
       
       
