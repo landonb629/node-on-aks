@@ -16,6 +16,8 @@ jobs:
       run:
         working-directory: ./manifests
     steps:
+      - name: checkout repo 
+        uses: actions/checkout@v3
       - name: update manifest 
         env:
           IMAGE_TAG: ${{ github.sha }}
