@@ -13,7 +13,7 @@ resource "helm_release" "argocd" {
     create_namespace = true 
 
     values = [ 
-        file("manifests/argo-app.yml")
+        file("argo-app.yml")
     ]
     depends_on = [ 
         module.eks-cluster
