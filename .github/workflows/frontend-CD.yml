@@ -20,5 +20,15 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          cd ../manifests
           sed -i 's/frontend:v.*/$IMAGE_TAG/g' frontend.yml
+    
+      - name: setup git configuration 
+        run: | 
+          git config user.name "github actions bot"
+          git config user.email "<>"
+
+      - name: commit 
+        run: | 
+          git add ./
+          git commit -m "updating frontend manifest for deployment"
+          git push origin main
