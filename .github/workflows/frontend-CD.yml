@@ -11,13 +11,20 @@ on:
 jobs: 
   CD: 
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged
+    #if: github.event.pull_request.merged
     defaults:
       run:
         working-directory: ./manifests
     steps:
       - name: checkout repo 
         uses: actions/checkout@v3
+      
+      - name: check the fold 
+        run: | 
+          echo "${{ github.event.pull_request.merged }}"
+          echo "${{ github.event.pull_request }}"
+          echo "${{ github.event.action }}"
+          
       - name: update manifest 
         env:
           IMAGE_TAG: ${{ github.sha }}
