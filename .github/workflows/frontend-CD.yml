@@ -11,7 +11,7 @@ on:
 jobs: 
   CD: 
     runs-on: ubuntu-latest
-    #if: github.event.pull_request.merged
+    if: ${{ github.event.pull_request.merged }}
     defaults:
       run:
         working-directory: ./manifests
@@ -24,12 +24,12 @@ jobs:
           echo "${{ github.event.pull_request.merged }}"
           echo "${{ github.event.pull_request }}"
           echo "${{ github.event.action }}"
-          
+
       - name: update manifest 
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          sed -i 's/frontend:v.*/$IMAGE_TAG/g' frontend.yml
+          sed -i "s/frontend:v.*/$IMAGE_TAG/g" frontend.yml
     
       - name: setup git configuration 
         run: | 

@@ -4,6 +4,8 @@ metadata:
   name: sample-app
   namespace: argocd
 spec:
+  syncPolicy:
+    automated: {}
   project: default 
   source:
     repoURL: https://github.com/landonb629/node-on-aks.git
