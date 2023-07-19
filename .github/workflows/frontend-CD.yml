@@ -14,11 +14,11 @@ jobs:
     if: github.event.pull_request.merged
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./manifests
     steps:
       - name: update manifest 
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cd ../manifests
-          sed -i 's/service1:v.*/$IMAGE_TAG/g' frontend.yml
+          sed -i 's/frontend:v.*/$IMAGE_TAG/g' frontend.yml
