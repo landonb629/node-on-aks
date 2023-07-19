@@ -19,5 +19,5 @@ spec:
     spec:
       containers:
         - name: service1 
-          image: 500731508494.dkr.ecr.us-east-2.amazonaws.com/service1:v1.1
+          image: 500731508494.dkr.ecr.us-east-2.amazonaws.com/test
       
