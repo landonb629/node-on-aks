@@ -1,0 +1,24 @@
+name: Microservice frontend CD 
+on:
+  pull_request:
+    types: 
+      - closed 
+    paths: 
+      - "frontend/**"
+    branches:
+      - "main"
+
+jobs: 
+  CD: 
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: update manifest 
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cd ../manifests
+          sed -i 's/service1:v.*/$IMAGE_TAG/g' frontend.yml

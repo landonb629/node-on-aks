@@ -7,9 +7,6 @@ Resources required to fully deploy an EKS cluster with terraform
 - IAM roles 
 - worker node groups (aws launch configuration + aws_instance)
 - aws autoscaling group 
-
-
-
 */
 locals {
   eks-iam-role = "eks-cluster-role"
@@ -49,7 +46,7 @@ module "eks-cluster"  {
             instance_types = ["t3.medium"]
         }        
     }
-    create_aws_auth_configmap = true
+   
     manage_aws_auth_configmap = true
     aws_auth_users = [ 
         { 
@@ -63,12 +60,7 @@ module "eks-cluster"  {
            groups = ["system:masters"]
         }
     ]
+    // KMS stuff - this is going to remove the cluster KMS key being created
+    cluster_encryption_config = {}
 }
 
-resource "helm_release" "argo" { 
-    name = "argocd"
-    repository = "https://argoproj.github.io/argo-helm"
-    chart = "argo-cd"
-    namespace = "argo"
-    version = "2.7.7"
-}
