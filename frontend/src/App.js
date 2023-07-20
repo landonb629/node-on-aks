@@ -77,7 +77,7 @@ function App() {
       <div className="flex-container">
         <div className="flex-item">
           <h1>Sample App</h1>
-          <h3>react / node apps running in EKS.</h3>
+          <h3>react / node apps running in EKS. deploy</h3>
         </div>
         <button className='trigger' onClick={()=> service1fetch()}>Service 1</button>
         <button className='trigger' onClick={()=> service2fetch()}>Service 2</button>
