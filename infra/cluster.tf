@@ -22,13 +22,16 @@ module "eks-cluster"  {
     cluster_endpoint_public_access = true 
     cluster_addons = { 
         coredns = { 
-            most_recent = true 
+            most_recent = false 
+            addon_version = "v1.10.1-eksbuild.2"
         }
         kube-proxy = { 
-            most_recent = true 
+            most_recent = false
+            addon_version = "v1.27.1-minimal-eksbuild.1"
         }
         vpc-cni = { 
-            most_recent = true 
+            most_recent = false 
+            addon_version = "v1.13.2-eksbuild.1"
         }
     }
     vpc_id = aws_vpc.production.id 
