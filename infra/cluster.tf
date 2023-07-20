@@ -26,8 +26,7 @@ module "eks-cluster"  {
             addon_version = "v1.10.1-eksbuild.2"
         }
         kube-proxy = { 
-            most_recent = false
-            addon_version = "v1.27.1-minimal-eksbuild.1"
+            most_recent = true
         }
         vpc-cni = { 
             most_recent = false 
