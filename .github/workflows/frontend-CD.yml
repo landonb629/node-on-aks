@@ -27,7 +27,7 @@ jobs:
  
       - name: update manifest 
         env:
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ github.event.pull_request.head.sha }}
         run: |
           IMAGE_TAG=${{ github.sha }}
           echo "$IMAGE_TAG"

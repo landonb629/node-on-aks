@@ -33,7 +33,7 @@ jobs:
         env: 
           REGISTRY: ${{ steps.ecr-login.outputs.registry }}
           REPOSITORY: frontend
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ github.event.pull_request.head.sha }}
         run: | 
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG . 
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
