@@ -29,11 +29,6 @@ jobs:
         id: ecr-login
         uses: aws-actions/amazon-ecr-login@v1
       
-      - name: echoing the base before and after
-        run: | 
-          echo "${{ github.event.base_ref }}"
-          echo "${{ github.event.before}}"
-      
       - name: build and push image 
         env: 
           REGISTRY: ${{ steps.ecr-login.outputs.registry }}
