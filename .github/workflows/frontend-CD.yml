@@ -31,7 +31,7 @@ jobs:
         run: |
           IMAGE_TAG=${{ github.sha }}
           echo "$IMAGE_TAG"
-          sed -i 's/frontend:v.*/frontend:$IMAGE_TAG/g' frontend.yml
+          sed -i 's/frontend:v.*/frontend:v.${{env.IMAGE_TAG}}/g' frontend.yml
           cat frontend.yml
     
       - name: setup git configuration 
