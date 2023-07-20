@@ -1,10 +1,10 @@
-name: Microservice frontend CD 
+name: Microservice Service 2 
 on:
   pull_request:
     types: 
       - closed 
     paths: 
-      - "frontend/**"
+      - "service2/**"
     branches:
       - "main"
 
@@ -18,13 +18,12 @@ jobs:
     steps:
       - name: checkout repo 
         uses: actions/checkout@v3
-     
+ 
       - name: update manifest 
         env:
           IMAGE_TAG: ${{ github.event.pull_request.head.sha }}
         run: |
-          sed -i 's/frontend:.*/frontend:${{env.IMAGE_TAG}}/g' frontend.yml
-          cat frontend.yml
+          sed -i 's/service2:.*/service2:${{env.IMAGE_TAG}}/g' service2.yml
     
       - name: setup git configuration 
         run: | 
@@ -34,5 +33,5 @@ jobs:
       - name: commit 
         run: | 
           git add ./
-          git commit -m "updating frontend manifest for deployment"
+          git commit -m "updating service1 manifest for deployment"
           git push origin main
