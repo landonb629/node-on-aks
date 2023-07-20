@@ -24,7 +24,12 @@ jobs:
           echo "${{ github.event.pull_request.merged }}"
           echo "${{ github.event.pull_request }}"
           echo "${{ github.event.action }}"
-
+      
+      - name: echoing the base before and after
+        run: | 
+          echo "${{ github.event.base_ref }}"
+          echo "${{ github.event.before}}"
+ 
       - name: update manifest 
         env:
           IMAGE_TAG: ${{ github.sha }}
