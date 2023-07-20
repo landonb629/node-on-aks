@@ -19,4 +19,4 @@ spec:
     spec:
       containers:
         - name: node-frontend
-          image: 500731508494.dkr.ecr.us-east-2.amazonaws.com/frontend:c4647183920d66846b539ace730fed6d78a63743
+          image: 500731508494.dkr.ecr.us-east-2.amazonaws.com/frontend:1.0

@@ -4,7 +4,7 @@ on:
     types: 
       - closed 
     paths: 
-      - "frontend/**"
+      - "service1/**"
     branches:
       - "main"
 
@@ -18,13 +18,12 @@ jobs:
     steps:
       - name: checkout repo 
         uses: actions/checkout@v3
-     
+ 
       - name: update manifest 
         env:
           IMAGE_TAG: ${{ github.event.pull_request.head.sha }}
         run: |
-          sed -i 's/frontend:.*/frontend:${{env.IMAGE_TAG}}/g' frontend.yml
-          cat frontend.yml
+          sed -i 's/service1:.*/service1:${{env.IMAGE_TAG}}/g' service1.yml
     
       - name: setup git configuration 
         run: | 
@@ -34,5 +33,5 @@ jobs:
       - name: commit 
         run: | 
           git add ./
-          git commit -m "updating frontend manifest for deployment"
+          git commit -m "updating service1 manifest for deployment"
           git push origin main
