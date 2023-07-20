@@ -29,8 +29,6 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.event.pull_request.head.sha }}
         run: |
-          IMAGE_TAG=${{ github.sha }}
-          echo "$IMAGE_TAG"
           sed -i 's/frontend:.*/frontend:${{env.IMAGE_TAG}}/g' frontend.yml
           cat frontend.yml
     
